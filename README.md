@@ -7,9 +7,19 @@ Challenge Backend for Java Developer
 
 ## Tech Stack
 
-**Spring / Spring Boot:** Web, Redis, JPA, Swagger, Kafka
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40" alt="java logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" height="40" alt="spring logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" height="40" alt="redis logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="40" alt="postgresql logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" height="40" alt="apachekafka logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height="40" alt="docker logo"  />
 
-**Docker:** Docker Hub, Docker Compose
+</div>
 
 ## Components
 
@@ -21,13 +31,14 @@ Challenge Backend for Java Developer
 **Repository:** https://hub.docker.com/r/joseluiscayo97/tenpoapi
 
 
-## Deployment
+## 🛠Deployment
+Download [docker-compose.yaml](https://github.com/observadorxpl/tenpochallenge/blob/master/docker-compose.yaml) and execute the next command.
 
-To deploy this project run
 
 ```bash
   docker-compose up -d
 ```
+- Docker Desktop / Docker Engine is required
 
 ## Test API
 
