@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "4f71e4d9-6ad7-4fe3-9d9a-4d7af025aff8",
+		"name": "tenpoapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6619506",
+		"_collection_link": "https://red-water-998837.postman.co/workspace/Tenpo~1df50820-0e31-4383-a497-17ec9a0c8d54/collection/6619506-4f71e4d9-6ad7-4fe3-9d9a-4d7af025aff8?action=share&source=collection_link&creator=6619506"
+	},
+	"item": [
+		{
+			"name": "amounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/amounts?num1=3&num2=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"amounts"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "3"
+						},
+						{
+							"key": "num2",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
