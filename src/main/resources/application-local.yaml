@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: tenpo
+    url: jdbc:postgresql://localhost:5433/tenpodb
+    password: mysecretpassword
+  data:
+    redis:
+      host: localhost
+      port: '6379'
+  application:
+    name: tenpochallenge
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: transaction-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+    bootstrap-servers: localhost:9092
+
+app:
+  kafka:
+    topic: transaction-topic
+  client:
+    iva:
+      host: https://68dda4c6d7b591b4b78d0078.mockapi.io/iva
+
+server:
+  port: '8080'

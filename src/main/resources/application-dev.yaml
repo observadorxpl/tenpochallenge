@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USERNAME}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DBNAME}
+    password: ${POSTGRES_PASSWORD}
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+  application:
+    name: tenpochallenge
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+    consumer:
+      group-id: transaction-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+    bootstrap-servers: ${KAFKA_HOST}:${KAFKA_PORT}
+
+app:
+  kafka:
+    topic: ${TRANSACTION_TOPIC_NAME}
+  client:
+    iva:
+      host: ${IVA_HOST}
+
+server:
+  port: '8080'

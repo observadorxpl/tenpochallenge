@@ -1,0 +1,97 @@
+services:
+  zookeeper:
+    image: 'confluentinc/cp-zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  kafka:
+    image: 'apache/kafka:latest'
+    networks:
+      - net-kafka
+    container_name: kafka
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_LISTENERS: >-
+        PLAINTEXT://kafka:29092,CONTROLLER://kafka:9093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://kafka:9092'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:9093'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      CLUSTER_ID: Mk3OEYBSD34fcwNTJENDM2Qk
+  kafdrop:
+    image: 'obsidiandynamics/kafdrop:latest'
+    networks:
+      - net-kafka
+    depends_on:
+      - kafka
+    ports:
+      - '19000:9000'
+    environment:
+      KAFKA_BROKERCONNECT: 'kafka:29092'
+  postgres:
+    image: postgres
+    networks:
+      - net-tenpo
+    restart: always
+    environment:
+      POSTGRES_USER: tenpo
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: tenpodb
+    ports:
+      - '5433:5432'
+  redis:
+    image: 'redis:latest'
+    networks:
+      - net-tenpo
+    ports:
+      - '6379:6379'
+
+  redisinsight:
+    image: 'redis/redisinsight:latest'
+    ports:
+      - '5540:5540'
+    depends_on:
+      - redis
+  tenpoapi:
+    image: 'joseluiscayo97/tenpoapi:latest'
+    networks: 
+      - net-tenpo
+      - net-kafka
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: tenpo
+      POSTGRES_DBNAME: tenpodb
+      POSTGRES_PASSWORD: mysecretpassword
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      TRANSACTION_TOPIC_NAME: transaction-topic
+      IVA_HOST: https://68dda4c6d7b591b4b78d0078.mockapi.io/iva
+
+networks:
+  net-kafka:
+    driver: bridge
+  net-tenpo:
+    driver: bridge
