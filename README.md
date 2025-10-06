@@ -31,7 +31,7 @@ Challenge Backend for Java Developer
 **Repository:** https://hub.docker.com/r/joseluiscayo97/tenpoapi
 
 
-## 🛠Deployment
+## Deployment
 Download [docker-compose.yaml](https://github.com/observadorxpl/tenpochallenge/blob/master/docker-compose.yaml) and execute the next command.
 
 
@@ -52,4 +52,4 @@ To get history transactions execute:
 ```bash
   curl --location 'localhost:8080/transactions' 
 ```
-Or import postman collection: tenpoapi.postman_collection.json
+Or import postman collection: [tenpoapi.postman_collection.json](https://github.com/observadorxpl/tenpochallenge/blob/master/tenpoapi.postman_collection.json)
