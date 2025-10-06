@@ -53,3 +53,11 @@ To get history transactions execute:
   curl --location 'localhost:8080/transactions' 
 ```
 Or import postman collection: [tenpoapi.postman_collection.json](https://github.com/observadorxpl/tenpochallenge/blob/master/tenpoapi.postman_collection.json)
+
+
+## Screenshots
+
+![API](https://raw.githubusercontent.com/observadorxpl/tenpochallenge/refs/heads/master/tenpoapi1.png)
+![API](https://raw.githubusercontent.com/observadorxpl/tenpochallenge/refs/heads/master/tenpoapi2.png)
+![kafka-ui](https://raw.githubusercontent.com/observadorxpl/tenpochallenge/refs/heads/master/kafka-ui.png)
+![kafka-ui](https://raw.githubusercontent.com/observadorxpl/tenpochallenge/refs/heads/master/redis-ui.png)
