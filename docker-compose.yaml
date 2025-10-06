@@ -56,11 +56,14 @@ services:
     image: 'redis:latest'
     networks:
       - net-tenpo
+      - net-redis
     ports:
       - '6379:6379'
 
   redisinsight:
     image: 'redis/redisinsight:latest'
+    networks:
+      - net-redis
     ports:
       - '5540:5540'
     depends_on:
@@ -94,4 +97,6 @@ networks:
   net-kafka:
     driver: bridge
   net-tenpo:
+    driver: bridge
+  net-redis:
     driver: bridge
